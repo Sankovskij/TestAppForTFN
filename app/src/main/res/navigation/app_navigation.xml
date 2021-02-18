@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/fragment_with_devices">
+
+
+    <fragment
+        android:id="@+id/fragment_with_devices"
+        android:name="sankovskij.api.testappfortfn.devices.ui.DevicesFragment"
+        android:label="fragment_with_devices"
+        tools:layout="@layout/fragment_device">
+        <action
+            android:id="@+id/action_fragment_with_devices_to_fragment_error"
+            app:destination="@id/fragment_error" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_error"
+        android:name="sankovskij.api.testappfortfn.error.ui.ErrorFragment"
+        android:label="fragment_error"
+        tools:layout="@layout/fragment_error" >
+        <action
+            android:id="@+id/action_fragment_error_to_fragment_with_devices2"
+            app:destination="@id/fragment_with_devices"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/fragment_with_devices"
+            />
+    </fragment>
+
+</navigation>

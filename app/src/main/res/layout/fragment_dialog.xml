@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:layout_marginEnd="4dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    app:cardCornerRadius="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:id="@+id/item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/white">
+
+
+        <TextView
+            android:id="@+id/dialog_device_name"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="25dp"
+
+            android:maxLines="2"
+            tools:text="ВЫ ХОТИТЕ УДАЛИТЬ РОБОТ ПЫЛЕСОС?"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/background_dialog_cancel"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/delete"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/dialog_cancel" />
+
+        <TextView
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/backgraound_dialog_delete"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cancel"
+            android:text="@string/dialog_delete" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.cardview.widget.CardView>

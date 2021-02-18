@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TestAppForTFN</string>
+    <string name="base_url">https://dev.api.sls.ompr.io</string>
+    <string name="do_you_want_to_delete">\"ВЫ ХОТИТЕ УДАЛИТЬ \"</string>
+    <string name="no_gas">ГАЗ НЕ ОБНАРУЖЕН</string>
+    <string name="oh_no_this_is_gas">ГАЗ ОБНАРУЖЕН</string>
+    <string name="online">ON LINE</string>
+    <string name="offline">OFF LINE</string>
+    <string name="device_pic">device pic</string>
+    <string name="something_goes_wrong">Что то пошло не так,\nошибка 123</string>
+    <string name="repeate">ПОВТОРИТЬ</string>
+    <string name="dialog_cancel">ОТМЕНА</string>
+    <string name="dialog_delete">УДАЛИТЬ</string>
+    <string name="refresh">ОБНОВИТЬ</string>
+    <string name="smart_devices">УМНЫЕ\nВЕЩИ</string>
+</resources>
