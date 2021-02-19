@@ -122,6 +122,7 @@ class DevicesAdapter(
             }
         }
     }
+
     companion object {
         private const val TYPE_LOADING = 0
         private const val TYPE_DEVICE = 1

@@ -15,6 +15,11 @@ import javax.inject.Inject
 @InjectViewState
 class DevicesPresenter() : MvpPresenter<DevicesView>() {
 
+    companion object {
+        private const val CODE_TEXT_ERROR = "Код ошибки: "
+
+    }
+
 
     @Inject
     lateinit var  deviceRetrofit: DevicesRetrofit
@@ -33,7 +38,7 @@ class DevicesPresenter() : MvpPresenter<DevicesView>() {
                 if ((response.code() == 200) && response.body() != null) {
                     viewState.updateRV(response.body()!!)
                 } else {
-                    viewState.navigateToErrorScreen(response.message())
+                    viewState.navigateToErrorScreen(CODE_TEXT_ERROR + response.code().toString())
                 }
             }
 
@@ -52,7 +57,7 @@ class DevicesPresenter() : MvpPresenter<DevicesView>() {
                     viewState.removeDeviceFromAdapter(device)
                     viewState.notifyDataChanged()
                 } else {
-                viewState.navigateToErrorScreen(response.code().toString())
+                viewState.navigateToErrorScreen(CODE_TEXT_ERROR + response.code().toString())
                 }
             }
 
@@ -70,7 +75,8 @@ class DevicesPresenter() : MvpPresenter<DevicesView>() {
                 if (response.isSuccessful) {
                     getDevicesFromServer()
                 } else {
-                    viewState.navigateToErrorScreen(response.code().toString())
+
+                    viewState.navigateToErrorScreen(CODE_TEXT_ERROR +  response.code().toString())
                 }
             }
 
