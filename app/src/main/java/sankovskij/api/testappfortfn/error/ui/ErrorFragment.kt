@@ -29,10 +29,14 @@ class ErrorFragment : MvpAppCompatFragment(), ErrorView {
         savedInstanceState: Bundle?
     ): View? {
         App.instance.appComponent.inject(this)
+
+
         return View.inflate(context, R.layout.fragment_error, null)
 
     }
     override fun init() {
+        val errorMassage = arguments?.let { ErrorFragmentArgs.fromBundle(it).errorMassage }
+        error_textview.text = errorMassage
         error_button.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_error_to_fragment_with_devices2)
         }

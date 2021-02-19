@@ -15,6 +15,11 @@ import javax.inject.Inject
 @InjectViewState
 class DevicesPresenter() : MvpPresenter<DevicesView>() {
 
+    companion object {
+        private const val CODE_TEXT_ERROR = "Код ошибки: "
+
+    }
+
 
     @Inject
     lateinit var  deviceRetrofit: DevicesRetrofit
@@ -30,13 +35,15 @@ class DevicesPresenter() : MvpPresenter<DevicesView>() {
         deviceRetrofit.getDevices().getDevices().enqueue(object :
             Callback<DeviceList> {
             override fun onResponse(call: Call<DeviceList>, response: Response<DeviceList>) {
-                if (response.isSuccessful && response.body() != null) {
+                if ((response.code() == 200) && response.body() != null) {
                     viewState.updateRV(response.body()!!)
+                } else {
+                    viewState.navigateToErrorScreen(CODE_TEXT_ERROR + response.code().toString())
                 }
             }
 
             override fun onFailure(call: Call<DeviceList>, t: Throwable) {
-                viewState.navigateToErrorScreen()
+                viewState.navigateToErrorScreen(t.message)
             }
         }
         )
@@ -46,12 +53,16 @@ class DevicesPresenter() : MvpPresenter<DevicesView>() {
         deviceRetrofit.deleteDevice().DeleteDevice(device.id).enqueue(object :
             Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                viewState.removeDeviceFromAdapter(device)
-                viewState.notifyDataChanged()
+                if (response.isSuccessful) {
+                    viewState.removeDeviceFromAdapter(device)
+                    viewState.notifyDataChanged()
+                } else {
+                viewState.navigateToErrorScreen(CODE_TEXT_ERROR + response.code().toString())
+                }
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                viewState.navigateToErrorScreen()
+                viewState.navigateToErrorScreen(t.message)
             }
         })
     }
@@ -61,11 +72,16 @@ class DevicesPresenter() : MvpPresenter<DevicesView>() {
         deviceRetrofit.resetDevices().resetDevices().enqueue(object :
             Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                getDevicesFromServer()
+                if (response.isSuccessful) {
+                    getDevicesFromServer()
+                } else {
+
+                    viewState.navigateToErrorScreen(CODE_TEXT_ERROR +  response.code().toString())
+                }
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                viewState.navigateToErrorScreen()
+                viewState.navigateToErrorScreen(t.message)
             }
         })
     }

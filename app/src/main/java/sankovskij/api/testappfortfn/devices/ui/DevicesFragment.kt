@@ -37,7 +37,7 @@ class DevicesFragment : MvpAppCompatFragment(), DevicesView {
     override fun init() {
         rv_devices.layoutManager = GridLayoutManager(context, 1)
         adapter = DevicesAdapter({
-            var deleteDialogFragment = DeleteDialogFragment(it.name) {
+            val deleteDialogFragment = DeleteDialogFragment(it.name) {
                 presenter.deleteDeviceFromServer(it)
                }
             deleteDialogFragment.setStyle(DialogFragment.STYLE_NO_FRAME, 0)
@@ -65,8 +65,9 @@ class DevicesFragment : MvpAppCompatFragment(), DevicesView {
         adapter.notifyDataSetChanged()
     }
 
-    override fun navigateToErrorScreen() {
-        findNavController().navigate(R.id.action_fragment_with_devices_to_fragment_error)
+    override fun navigateToErrorScreen(error: String?) {
+        val action = DevicesFragmentDirections.actionFragmentWithDevicesToFragmentError(error)
+            findNavController().navigate(action)
     }
 
     override fun removeDeviceFromAdapter(device: Device) {
