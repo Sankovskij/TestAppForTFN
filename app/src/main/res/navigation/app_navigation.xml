@@ -28,6 +28,11 @@
             app:popUpToInclusive="true"
             app:popUpTo="@id/fragment_with_devices"
             />
+        <argument
+            android:name="error_massage"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="неизвестная ошибка" />
     </fragment>
 
 </navigation>

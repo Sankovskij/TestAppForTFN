@@ -11,7 +11,7 @@ interface DevicesView : MvpView {
     fun init()
     fun updateRV(deviceList: DeviceList)
     fun notifyDataChanged()
-    fun navigateToErrorScreen()
+    fun navigateToErrorScreen(error: String?)
     fun removeDeviceFromAdapter(device: Device)
 
 }
